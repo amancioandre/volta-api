@@ -2,12 +2,12 @@
 const http = require('http');
 
 /* Server Scripts */
-const app = require('../app');
+let app = require('../app');
 
 /* ERROR HANDLING */
 /* Catch 404 and send not-found route */
 app.use((req, res, next) => {
-  res.status(404, { message: 'API Route not find '});
+  res.status(404);
 })
 
 /* Catch 500 error status */
@@ -22,7 +22,7 @@ app.use((req, res, next) => {
 })
 
 /* SERVER INITIALIZATION */
-const server = http.createServer(app)
+let server = http.createServer(app)
 
 server.on('error', err => {
   if(err.syscall !== 'listen') { throw err }

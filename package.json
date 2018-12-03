@@ -7,7 +7,9 @@
     "volta-api": "server.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "DEBUG=volta-api:* nodemon ./bin/server",
+    "start": "node ./bin/server"
   },
   "repository": {
     "type": "git",
@@ -30,8 +32,13 @@
   "homepage": "https://github.com/amancioandre/volta-api#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^6.1.0",
     "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "logger": "0.0.1",
     "mongoose": "^5.3.14",
+    "morgan": "^1.9.1",
     "session": "^0.1.0"
   }
 }

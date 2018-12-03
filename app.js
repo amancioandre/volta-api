@@ -3,7 +3,10 @@ require('dotenv').config();
 const express = require('express'),
       mongoose = require('mongoose'),
       bodyParser = require('body-parser'),
-      session = require('express-session');
+      session = require('express-session'),
+      path = require('path'),
+      logger = require('morgan'),
+      cookieParser = require('cookie-parser');
 
 /* APP INITIALIZATION */
 const app_name = require('./package.json').name,
@@ -11,8 +14,10 @@ const app_name = require('./package.json').name,
       app = express();
 
 /* DATABASE CONNECTION */
+const databaseName = 'database';
+
 mongoose
-.connect('http://localhost/database-name:27017', { useNewUrlParser: true })
+.connect(`mongodb://localhost/${databaseName}`, { useNewUrlParser: true })
 .then(output => {
   console.log(`Connected to Mongo: Database name: ${output.connections[0].name}`);
 })
@@ -24,7 +29,7 @@ mongoose
 /* Middlewares */
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParter.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 // Add authentication and session middlewares.
 
@@ -32,8 +37,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 /* APP ROUTES */
-const index = ('./routes/index');
+// const index = ('./routes/index');
 
-app.use('/', index)
+// app.use('/', index)
 
-module.export = app;
+module.exports = app;

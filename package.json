@@ -1,0 +1,37 @@
+{
+  "name": "volta-api",
+  "version": "1.0.0",
+  "description": "API for Volta Project, database handling, server handling",
+  "main": "app.js",
+  "bin": {
+    "volta-api": "server.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amancioandre/volta-api.git"
+  },
+  "keywords": [
+    "API",
+    "volta",
+    "project",
+    "database",
+    "handler",
+    "server",
+    "handler"
+  ],
+  "author": "Andre Amancio, Gabriel Sicuto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amancioandre/volta-api/issues"
+  },
+  "homepage": "https://github.com/amancioandre/volta-api#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.3.14",
+    "session": "^0.1.0"
+  }
+}

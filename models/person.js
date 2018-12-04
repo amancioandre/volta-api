@@ -8,22 +8,25 @@ const personSchema = new Schema({
     alias: String,
   },
   dateOfBirth: Date,
-  status: { type: String, enums: ['Missing','Deceased', 'Pendent', 'Homeless'] },
-  sex: { type: String, enums: ['Male', 'Female' ]},
+  status: { type: String, enums: ['Missing', 'Deceased', 'Pendent', 'Homeless'] },
+  sex: { type: String, enums: ['Male', 'Female'] },
   locations: {
     ofBirth: {
       city: String,
       address: String,
       state: String,
-      zip: Number
+      zip: Number,
     },
-    lastKnownCity: String,
-    geoReferences: [{ type: mongoose.SchemaType.ObjectId, ref: "Local" }],
+    // lastKnownCity: String,
+    geoReferences: [{
+      geoHash: String,
+      timestamps: { createdAt: 'createdAt' },
+    }],
   },
   background: {
     profession: String,
-    degree: { type: String, enums: ['Non-alphabetized', 'Basic', 'College', 'Master']},
-    maritalStatus: Boolean,
+    degree: { type: String, enums: ['Non-alphabetized', 'Basic', 'College', 'Master'] },
+    maritalStatus: [{ enum: ['maried', 'single', 'widwed'] }],
   },
   picture: String, // <<<<<<< ---- FIX THIS!!!!
   appearance: {
@@ -33,11 +36,11 @@ const personSchema = new Schema({
     hairType: { type: String, enums: [''] },
     height: Number,
     weight: Number,
-    tattoos: [ {type: String }]
+    tattoos: [{ type: String }],
   },
   health: {
     drugs: [{ type: String, enums: ['None', ''] }],
-    amputhee: [ {type: String, enums: ['No', 'Left Arm/Hands', 'Right Arm/Hands', 'Left Leg/Feet', 'Right Leg/Feet' ]} ],
+    amputhee: [{ type: String, enums: ['No', 'Left Arm/Hands', 'Right Arm/Hands', 'Left Leg/Feet', 'Right Leg/Feet'] }],
     mental: [{ type: String, enums: ['CID'] }],
     diseases: [{ type: String, enums: ['CID'] }],
   },
@@ -47,9 +50,9 @@ const personSchema = new Schema({
     driverLicense: Number,
     birthCertificate: Number,
     professionalLicense: Number,
-  }
+  },
 }, {
-  timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' }
+  timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' },
 });
 
 const Person = mongoose.model('Person', personSchema);

@@ -1,22 +1,23 @@
 const mongoose = require('mongoose'),
-      Schema = mongoose.Schema;
+       Schema = mongoose.Schema;
 
 const organizationSchema = new Schema({
   name: String,
   type: { type: String, enums: ['ONG', 'Shelter', ''] },
   contact: {
     email: String,
-    responsible: String,
+    responsible: { type: mongoose.SchemaType.ObjectId, ref: 'Agent' },
     address: {
       city: String,
       state: String,
-      street: String
-    }
+      street: String,
+    },
   },
   agents: [{ type: mongoose.SchemaType.ObjectId, ref: 'Agent' }],
-  persons: [{ type: mongoose.SchemaType.ObjectId, ref: 'Person' }]
-}, {
-  timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' }
+  persons: [{ type: mongoose.SchemaType.ObjectId, ref: 'Person' }],
+},
+{
+  timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' },
 });
 
 const Organization = mongoose.model('Organization', organizationSchema);

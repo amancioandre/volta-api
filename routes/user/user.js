@@ -22,22 +22,6 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res, next) => {
   const person = personBuilder(req.body)
 
-<<<<<<< HEAD
-  const newPerson = new Person({ ...req.body });
-  newPerson.save((err) => {
-    if (err) {
-      res.status(400).json({ message: 'Saving user to database went wrong.' });
-      return;
-    }
-
-  // Person.create()
-  //   .then(response => {
-  //     res.json(response)
-  //   })
-  //   .catch(err => {
-  //     res.json(err)
-  //   })
-=======
   Person.create(person)
     .then(response => {
       res.json(response)
@@ -45,7 +29,6 @@ router.post('/', (req, res, next) => {
     .catch(err => {
       res.json(err)
     })
->>>>>>> 7bdefb184110defcd221341f17472cd6fe0c13ea
 });
 
 /* Show Specific and Update/Patch */

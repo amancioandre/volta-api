@@ -14,7 +14,7 @@ const app_name = require('./package.json').name,
       app = express();
 
 /* DATABASE CONNECTION */
-const databaseName = 'database';
+const databaseName = process.env.DATABASE_NAME;
 
 mongoose
 .connect(`mongodb://localhost/${databaseName}`, { useNewUrlParser: true })
@@ -40,5 +40,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 // const index = ('./routes/index');
 
 // app.use('/', index)
+const personsRoute = require('./routes/persons/persons');
+// const usersRoute = require('./routes/user/user');
+// const orgsRoute = require('./routes/organization/organization');
+
+app.use('/api/persons', personsRoute);
+// app.use('/api/users/', usersRoute);
 
 module.exports = app;

@@ -7,7 +7,7 @@ const Person = require('../../models/person');
 
 /* Middlewares */
 const validateId = require('../../src/helpers/middleware').validateId
-console.log(validateId)
+const personBuilder = require('../../src/helpers/builder').personBuilder
 
 /* RESTFUL ROUTES */
 /* Show and Create */
@@ -23,9 +23,9 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-  // Destructure form
+  const person = personBuilder(req.body);
 
-  Person.create({})
+  Person.create(person)
     .then(response => {
       res.json(response)
     })
@@ -47,10 +47,11 @@ router.get('/:personId', validateId, (req, res, next) => {
     })
 })
 
-router.put('/:personId', validateId, (req, res, next) => {
-  // Destructure form body
+router.patch('/:personId', validateId, (req, res, next) => {
+  const person = personBuilder(req.body);
+  const personId = req.params.personId;
 
-  Person.findOneAndUpdate(req.params.id)
+  Person.findOneAndUpdate({ _id: personId } , person )
     .then(response => {
       res.json(response);
     })

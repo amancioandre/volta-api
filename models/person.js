@@ -3,7 +3,7 @@ const mongoose = require('mongoose'),
 
 const personSchema = new Schema({
   name: {
-    fistName: String,
+    firstName: String,
     lastName: String,
     alias: String,
   },
@@ -18,10 +18,7 @@ const personSchema = new Schema({
       zip: Number,
     },
     // lastKnownCity: String,
-    geoReferences: [{
-      geoHash: String,
-      timestamps: { createdAt: 'createdAt' },
-    }],
+    geoReferences: [{ geoHash: { type:String } }, { timestamps: { createdAt: 'created_at' } }],
   },
   background: {
     profession: String,
@@ -52,7 +49,7 @@ const personSchema = new Schema({
     professionalLicense: Number,
   },
 }, {
-  timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' },
+  timestamps: { createdAt: 'Created_at', updatedAt: 'Updated_at' },
 });
 
 const Person = mongoose.model('Person', personSchema);

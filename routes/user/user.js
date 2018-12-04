@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const validateId = require('../../src/helpers/middleware').validateId;
 
 /* Model */
-const User = require('../../models/user');
+// const User = require('../../models/user');
 
 /* RESTFUL ROUTES */
 /* Show and Create */
@@ -20,9 +20,9 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-  // Destructure form
+  const person = personBuilder(req.body)
 
-  Person.create()
+  Person.create(person)
     .then(response => {
       res.json(response)
     })

@@ -17,7 +17,6 @@ const personSchema = new Schema({
       state: String,
       zip: Number,
     },
-    // lastKnownCity: String,
     geoReferences: [{ geoHash: { type:String } }, { timestamps: { createdAt: 'created_at' } }],
   },
   background: {

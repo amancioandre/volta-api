@@ -9,9 +9,9 @@ const userSchema = new Schema({
   email: String,
   username: String,
   password: String,
-  organization: { type: mongoose.SchemaType.ObjectId, ref: 'Organization' },
+  organization: { type: mongoose.SchemaTypes.ObjectId, ref: 'Organization' },
   dateOfBirth: { type: Date },
-  persons: [{ type: mongoose.SchemaType.ObjectId, ref: 'Person' }],
+  persons: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'Person' }],
   role: { type: String, enums: ['Agent', 'Conventional'] },
 }, {
   timestamps: { createdAt: 'createdAd', updatedAt: 'updatedAt' },

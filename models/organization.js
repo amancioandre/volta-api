@@ -6,15 +6,15 @@ const organizationSchema = new Schema({
   type: { type: String, enums: ['ONG', 'Shelter', ''] },
   contact: {
     email: String,
-    responsible: { type: mongoose.SchemaType.ObjectId, ref: 'Agent' },
+    responsible: { type: mongoose.SchemaTypes.ObjectId, ref: 'Agent' },
     address: {
       city: String,
       state: String,
       street: String,
     },
   },
-  agents: [{ type: mongoose.SchemaType.ObjectId, ref: 'Agent' }],
-  persons: [{ type: mongoose.SchemaType.ObjectId, ref: 'Person' }],
+  agents: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'Agent' }],
+  persons: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'Person' }],
 },
 {
   timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' },

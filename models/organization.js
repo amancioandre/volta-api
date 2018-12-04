@@ -1,22 +1,25 @@
-const mongoose = require('mongoose'),
-      Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+
+
+const Schema = mongoose.Schema;
 
 const organizationSchema = new Schema({
   name: String,
   type: { type: String, enums: ['ONG', 'Shelter', ''] },
   contact: {
     email: String,
-    responsible: String,
+    responsible: { type: mongoose.SchemaType.ObjectId, ref: 'Agent' },
     address: {
       city: String,
       state: String,
-      street: String
-    }
+      street: String,
+    },
   },
-  agents: [{ type: mongoose.SchemaType.ObjectId, ref: 'Agent' }],
-  persons: [{ type: mongoose.SchemaType.ObjectId, ref: 'Person' }]
-}, {
-  timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' }
+  agents: [{ type: mongoose.SchemaType.ObjectId, ref: 'Agent' }, { timestamps: { createdAt: 'created_at' } }],
+  persons: [{ type: mongoose.SchemaType.ObjectId, ref: 'Person' }, { timestamps: { createdAt: 'created_at' } }],
+},
+{
+  timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' },
 });
 
 const Organization = mongoose.model('Organization', organizationSchema);

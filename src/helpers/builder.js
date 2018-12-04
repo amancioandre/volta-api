@@ -22,7 +22,12 @@ module.exports = {
       documents: { registry, economicReg, driverLicense, birthCertificate, professionalLicense },
     }
   },
-  userBuilder: (body) => {
-    
+  userBuilder: (body, hashPassword) => {
+    const { firstName, lastName, username, email,
+    organization, dateOfBirth, role } = body;
+    return { 
+      name: { firstName, lastName },
+      email, username, hashPassword, organization, role
+    }
   }
 }

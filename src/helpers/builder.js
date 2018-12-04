@@ -27,7 +27,7 @@ module.exports = {
     organization, dateOfBirth, role } = body;
     return { 
       name: { firstName, lastName },
-      email, username, hashPassword, organization, role
+      email, username, hashPassword, organization, role, dateOfBirth
     }
   }
 }

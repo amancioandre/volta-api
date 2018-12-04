@@ -17,8 +17,11 @@ const personSchema = new Schema({
       state: String,
       zip: Number,
     },
-    lastKnownCity: String,
-    geoReferences: [{ type: mongoose.SchemaType.ObjectId, ref: 'Local' }],
+    // lastKnownCity: String,
+    geoReferences: [{
+      geoHash: String,
+      timestamps: { createdAt: 'createdAt' },
+    }],
   },
   background: {
     profession: String,
@@ -49,7 +52,7 @@ const personSchema = new Schema({
     professionalLicense: Number,
   },
 }, {
-  timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' }
+  timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' },
 });
 
 const Person = mongoose.model('Person', personSchema);

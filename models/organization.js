@@ -15,8 +15,8 @@ const organizationSchema = new Schema({
       street: String,
     },
   },
-  agents: [{ type: mongoose.SchemaType.ObjectId, ref: 'Agent' }, { timestamps: { createdAt: 'created_at' } }],
-  persons: [{ type: mongoose.SchemaType.ObjectId, ref: 'Person' }, { timestamps: { createdAt: 'created_at' } }],
+  agents: [{ type: mongoose.SchemaType.ObjectId, ref: 'Agent' }],
+  persons: [{ type: mongoose.SchemaType.ObjectId, ref: 'Person' }],
 },
 {
   timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' },

@@ -20,7 +20,7 @@ const personSchema = new Schema({
     // lastKnownCity: String,
     geoReferences: [{
       geoHash: String,
-      timestamps: { createdAt: 'createdAt' },
+      timestamps: { createdAt: 'created_at' },
     }],
   },
   background: {

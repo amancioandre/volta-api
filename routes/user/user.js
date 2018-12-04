@@ -22,13 +22,20 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res, next) => {
   // Destructure form
 
-  Person.create()
-    .then(response => {
-      res.json(response)
-    })
-    .catch(err => {
-      res.json(err)
-    })
+  const newPerson = new Person({ ...req.body });
+  newPerson.save((err) => {
+    if (err) {
+      res.status(400).json({ message: 'Saving user to database went wrong.' });
+      return;
+    }
+
+  // Person.create()
+  //   .then(response => {
+  //     res.json(response)
+  //   })
+  //   .catch(err => {
+  //     res.json(err)
+  //   })
 });
 
 /* Show Specific and Update/Patch */

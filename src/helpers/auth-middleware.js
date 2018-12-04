@@ -3,14 +3,6 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../../models/user');
 
-module.exports = {
-  authenticate,
-  getAll,
-  getById,
-  create,
-  update,
-};
-
 async function authenticate({ username, password }) {
   const user = await User.findOne({ username });
   if (user && bcrypt.compareSync(password, user.hash)) {
@@ -34,7 +26,7 @@ async function getById(id) {
 async function create(userParam) {
   // validate
   if (await User.findOne({ username: userParam.username })) {
-    throw `Username "${  userParam.username  }" is already taken`;
+    throw `Username "${userParam.username}" is already taken`;
   }
 
   const user = new User(userParam);
@@ -42,10 +34,8 @@ async function create(userParam) {
   // hash password
   if (userParam.password) {
     user.hash = bcrypt.hashSync(userParam.password, 10);
+    return user.hash;
   }
-
-  // save user
-  await user.save();
 }
 
 async function update(id, userParam) {
@@ -54,7 +44,7 @@ async function update(id, userParam) {
   // validate
   if (!user) throw 'User not found';
   if (user.username !== userParam.username && await User.findOne({ username: userParam.username })) {
-    throw `Username "${  userParam.username  }" is already taken`;
+    throw `Username "${userParam.username }" is already taken`;
   }
 
   // hash password if it was entered
@@ -68,3 +58,10 @@ async function update(id, userParam) {
   await user.save();
 }
 
+module.exports = {
+  authenticate,
+  getAll,
+  getById,
+  create,
+  update,
+};

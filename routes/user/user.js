@@ -11,10 +11,10 @@ const validateId = require('../../src/helpers/middleware').validateId;
 /* Show and Create */
 router.get('/', (req, res, next) => {
   User.find()
-    .then(users => {
+    .then((users) => {
       res.json(users)
     })
-    .catch(err => {
+    .catch((err) => {
       res.json(err)
     })
 });

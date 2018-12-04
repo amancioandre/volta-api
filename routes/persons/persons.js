@@ -5,8 +5,8 @@ const router = express.Router();
 const Person = require('../../models/person');
 
 /* Middlewares */
-const validateId = require('../../src/helpers/middleware').validateId
-const personBuilder = require('../../src/helpers/builder').personBuilder
+const { validateId } = require('../../src/helpers/middleware');
+const { personBuilder } = require('../../src/helpers/builder');
 
 /* RESTFUL ROUTES */
 /* Show and Create */

@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const validateId = require('../../src/helpers/middleware').validateId;
 
 /* Model */
-const User = require('../../models/user');
+// const User = require('../../models/user');
 
 /* RESTFUL ROUTES */
 /* Show and Create */
@@ -20,8 +20,9 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-  // Destructure form
+  const person = personBuilder(req.body)
 
+<<<<<<< HEAD
   const newPerson = new Person({ ...req.body });
   newPerson.save((err) => {
     if (err) {
@@ -36,6 +37,15 @@ router.post('/', (req, res, next) => {
   //   .catch(err => {
   //     res.json(err)
   //   })
+=======
+  Person.create(person)
+    .then(response => {
+      res.json(response)
+    })
+    .catch(err => {
+      res.json(err)
+    })
+>>>>>>> 7bdefb184110defcd221341f17472cd6fe0c13ea
 });
 
 /* Show Specific and Update/Patch */

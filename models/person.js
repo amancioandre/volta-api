@@ -29,7 +29,7 @@ const personSchema = new Schema({
     bodyType: { type: String, enums: ['Skinny', 'Athletical', 'Fat'] },
     eyeColor: { type: String, enums: ['Brown', 'Green', 'Blue'] },
     skinColor: { type: String, enums: ['Black', 'Dark Brown', 'Brown', 'Yellow', 'Caucasian'] },
-    hairType: { type: String, enums: [''] },
+    hairType: { type: String },
     height: Number,
     weight: Number,
     tattoos: [{ type: String }],

@@ -37,8 +37,8 @@ const personSchema = new Schema({
   health: {
     drugs: [{ type: String, enums: ['None', ''] }],
     amputhee: [{ type: String, enums: ['No', 'Left Arm/Hands', 'Right Arm/Hands', 'Left Leg/Feet', 'Right Leg/Feet'] }],
-    mental: [{ type: String, enums: ['CID'] }],
-    diseases: [{ type: String, enums: ['CID'] }],
+    mental: [{ type: String }],
+    diseases: [{ type: String }],
   },
   documents: {
     registry: Number,

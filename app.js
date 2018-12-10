@@ -58,12 +58,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 // const index = ('./routes/index');
 
 // app.use('/', index)
-const personsRoute = require('./routes/persons/persons');
+const personRoute = require('./routes/person/person');
 const usersRoute = require('./routes/user/user');
 const loginRoute = require('./routes/auth/login');
 // const orgsRoute = require('./routes/organization/organization');
 
-app.use('/api/people', personsRoute);
+app.use('/api/people', personRoute);
 app.use('/api/users', usersRoute);
 app.use('/api/auth', loginRoute);
 

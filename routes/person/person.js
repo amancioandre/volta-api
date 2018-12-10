@@ -1,5 +1,6 @@
 const express = require('express');
 const uploadCloud = require('../../src/cloudinary');
+
 const router = express.Router();
 
 /* Models */
@@ -30,17 +31,32 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', uploadCloud.single('picture'), (req, res, next) => {
-  console.log(req.file.originalname);
-  const person = personBuilder(req.body, req.file);
-  console.log(person);
-  Person.create(person)
-    .then((response) => {
-      res.json(response);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.json(err);
-    });
+  // console.log(req.file.originalname);
+  let person = {};
+  if (req.file) {
+    person = personBuilder(req.body.person, req.file);
+
+    console.log(person);
+    Person.create(person)
+      .then((response) => {
+        res.json(response);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.json(err);
+      });
+  } else {
+    person = personBuilder(req.body.person);
+    console.log(person);
+    Person.create(person)
+      .then((response) => {
+        res.json(response);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.json(err);
+      });
+  }
 });
 
 /* Show Specific and Update/Patch */

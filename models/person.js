@@ -26,7 +26,7 @@ const personSchema = new Schema({
   },
   picture: {
     picName: String,
-    picPath: String
+    picPath: String,
   },
   appearance: {
     bodyType: { type: String, enums: ['Skinny', 'Athletical', 'Fat'] },

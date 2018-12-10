@@ -1,6 +1,6 @@
 module.exports = {
-  personBuilder: (body, file) => {
-    console.log(body, file);
+  personBuilder: (body, file = null) => {
+    // console.log(body, file);
     const {
       firstName, lastName, alias, dateOfBirth, status, sex, city, address, state, zip,
       profession, degree, maritalStatus, bodyType, eyeColor, skinColor, hairType, height, weight,
@@ -8,7 +8,14 @@ module.exports = {
       economicReg,
     } = body;
 
-    const { url, originalname } = file
+    let image = {};
+
+    file === null ? image = {
+      url: 'https://res.cloudinary.com/stormamnc/image/upload/v1544470625/volta-api/people/person_picture_alt.png',
+      originalname: 'Avatar',
+    } : image = file;
+
+    const { url, originalname } = image;
 
     console.log(body);
     return {
@@ -27,8 +34,8 @@ module.exports = {
       },
       background: { profession, degree, maritalStatus },
       picture: {
-        imgName: originalname,
-        imgPath: url
+        picName: originalname,
+        picPath: url,
       },
       appearance: {
         bodyType, eyeColor, skinColor, hairType, height, weight, tattoos,
@@ -42,7 +49,7 @@ module.exports = {
     };
   },
   userBuilder: (body) => {
-    console.log("userbuilder", body)
+    console.log('userbuilder', body);
     const {
       firstName, lastName, username, email,
       organization, dateOfBirth, role, password,

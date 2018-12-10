@@ -16,9 +16,12 @@ router.get('/', (req, res, next) => {
   let query = {};
   console.log(req.query.q);
   if (req.query.q && req.query.q.length > 0) {
-    query = { };
+    const reg = new RegExp(`${req.query.q}`, 'i');
+    console.log(`${reg}`);
+    query = {
+      $or: [{ 'name.firstName': reg }, { 'name.lastName': reg }, { 'name.alias': reg }],
+    };
   }
-  console.log(query);
 
   Person.find(query)
     // .populate

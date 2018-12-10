@@ -12,7 +12,14 @@ const { personBuilder } = require('../../src/helpers/builder');
 /* RESTFUL ROUTES */
 /* Show and Create */
 router.get('/', (req, res, next) => {
-  Person.find()
+  let query = {};
+  console.log(req.query.q);
+  if (req.query.q && req.query.q.length > 0) {
+    query = { };
+  }
+  console.log(query);
+
+  Person.find(query)
     // .populate
     .then((persons) => {
       res.json(persons);

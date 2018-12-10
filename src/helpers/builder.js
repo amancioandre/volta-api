@@ -26,10 +26,10 @@ module.exports = {
         // }],
       },
       background: { profession, degree, maritalStatus },
-      picture: {
+      picture: picture.push[{
         imgName: originalname,
         imgPath: url
-      },
+      }],
       appearance: {
         bodyType, eyeColor, skinColor, hairType, height, weight, tattoos,
       },

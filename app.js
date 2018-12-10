@@ -63,7 +63,7 @@ const usersRoute = require('./routes/user/user');
 const loginRoute = require('./routes/auth/login');
 // const orgsRoute = require('./routes/organization/organization');
 
-app.use('/api/persons', personsRoute);
+app.use('/api/people', personsRoute);
 app.use('/api/users', usersRoute);
 app.use('/api/auth', loginRoute);
 

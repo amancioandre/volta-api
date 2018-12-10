@@ -1,5 +1,5 @@
 const express = require('express');
-
+const uploadCloud = require('../../src/cloudinary');
 const router = express.Router();
 const { userBuilder } = require('../../src/helpers/builder');
 const { validateId } = require('../../src/helpers/middleware');
@@ -21,6 +21,7 @@ router.get('/', (req, res, next) => {
     });
 });
 
+/* Create and Send Picture to CDN */
 router.post('/', (req, res, next) => {
   const user = userBuilder(req.body.user);
 

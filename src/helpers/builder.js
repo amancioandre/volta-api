@@ -1,11 +1,14 @@
 module.exports = {
-  personBuilder: (body) => {
+  personBuilder: (body, file) => {
+    console.log(body, file);
     const {
       firstName, lastName, alias, dateOfBirth, status, sex, city, address, state, zip,
       profession, degree, maritalStatus, bodyType, eyeColor, skinColor, hairType, height, weight,
       tattoos, drugs, amputhee, mental, diseases, registry, driverLicense, birthCertificate, professionalLicense,
       economicReg,
     } = body;
+
+    const { url, originalname } = file
 
     console.log(body);
     return {
@@ -23,7 +26,10 @@ module.exports = {
         // }],
       },
       background: { profession, degree, maritalStatus },
-      // picture: String, // <<<<<<< ---- FIX THIS!!!!
+      picture: {
+        imgName: originalname,
+        imgPath: url
+      },
       appearance: {
         bodyType, eyeColor, skinColor, hairType, height, weight, tattoos,
       },

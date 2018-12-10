@@ -24,10 +24,10 @@ const personSchema = new Schema({
     degree: { type: String, enums: ['Non-alphabetized', 'Basic', 'College', 'Master'] },
     maritalStatus: { type: String, enums: ['maried', 'single', 'widwed'] },
   },
-  picture: [{
+  picture: {
     picName: String,
-    picPath: String
-  }],
+    picPath: String,
+  },
   appearance: {
     bodyType: { type: String, enums: ['Skinny', 'Athletical', 'Fat'] },
     eyeColor: { type: String, enums: ['Brown', 'Green', 'Blue'] },

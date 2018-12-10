@@ -22,16 +22,18 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-  const user = userBuilder(req.body);
+  const user = userBuilder(req.body.user);
 
   createPassword(user).then((hash) => {
     user.password = hash;
 
     User.create(user)
       .then((response) => {
+        console.log("create user", user);
         res.json(response);
       })
       .catch((err) => {
+        console.log(err);
         res.json(err);
       });
   });

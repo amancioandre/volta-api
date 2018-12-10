@@ -17,12 +17,12 @@ const personSchema = new Schema({
       state: String,
       zip: Number,
     },
-    geoReferences: [{ geoHash: { type:String } }, { timestamps: { createdAt: 'created_at' } }],
+    geoReferences: [{ geoHash: { type: String } }, { timestamps: { createdAt: 'created_at' } }],
   },
   background: {
     profession: String,
     degree: { type: String, enums: ['Non-alphabetized', 'Basic', 'College', 'Master'] },
-    maritalStatus: [{ enum: ['maried', 'single', 'widwed'] }],
+    maritalStatus: { type: String, enums: ['maried', 'single', 'widwed'] },
   },
   picture: String, // <<<<<<< ---- FIX THIS!!!!
   appearance: {

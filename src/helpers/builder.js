@@ -6,6 +6,8 @@ module.exports = {
       tattoos, drugs, amputhee, mental, diseases, registry, driverLicense, birthCertificate, professionalLicense,
       economicReg,
     } = body;
+
+    console.log(body);
     return {
       name: { firstName, lastName, alias },
       dateOfBirth,
@@ -34,6 +36,7 @@ module.exports = {
     };
   },
   userBuilder: (body) => {
+    console.log("userbuilder", body)
     const {
       firstName, lastName, username, email,
       organization, dateOfBirth, role, password,

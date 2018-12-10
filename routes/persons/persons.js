@@ -1,5 +1,5 @@
 const express = require('express');
-
+const uploadCloud = require('../../src/cloudinary');
 const router = express.Router();
 
 /* Models */
@@ -29,8 +29,9 @@ router.get('/', (req, res, next) => {
     });
 });
 
-router.post('/', (req, res, next) => {
-  const person = personBuilder(req.body.person);
+router.post('/', uploadCloud.single('picture'), (req, res, next) => {
+  console.log(req.file.originalname);
+  const person = personBuilder(req.body, req.file);
   console.log(person);
   Person.create(person)
     .then((response) => {
@@ -54,8 +55,8 @@ router.get('/:personId', validateId, (req, res, next) => {
     });
 });
 
-router.patch('/:personId', validateId, (req, res, next) => {
-  const person = personBuilder(req.body);
+router.patch('/:personId', validateId, uploadCloud.single('picture'), (req, res, next) => {
+  const person = personBuilder(req.body, req.file);
   const personId = req.params.personId;
 
   Person.findOneAndUpdate({ _id: personId }, person)

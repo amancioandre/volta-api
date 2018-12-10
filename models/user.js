@@ -11,7 +11,7 @@ const userSchema = new Schema({
   password: String,
   organization: { type: mongoose.SchemaTypes.ObjectId, ref: 'Organization' },
   dateOfBirth: { type: Date },
-  persons: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'Person' }],
+  people: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'Person' }],
   role: { type: String, enums: ['Agent', 'Conventional'] },
 }, {
   timestamps: { createdAt: 'createdAd', updatedAt: 'updatedAt' },

@@ -7,6 +7,7 @@ const session = require('express-session');
 const path = require('path');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 /* APP INITIALIZATION */
 const app_name = require('./package.json').name;
@@ -41,6 +42,13 @@ app.use(session({
   resave: true,
   cookie: { maxAge: 60000 },
   saveUninitialized: true,
+}));
+
+/* Cors */
+
+app.use(cors({
+  credentials: true,
+  origin: ['http://localhost:3000'],
 }));
 
 /* Static Files */

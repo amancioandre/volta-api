@@ -35,7 +35,7 @@ const personSchema = new Schema({
     tattoos: [{ type: String }],
   },
   health: {
-    drugs: [{ type: String, enums: ['None', ''] }],
+    drugs: [{ type: Boolean }],
     amputhee: [{ type: String, enums: ['No', 'Left Arm/Hands', 'Right Arm/Hands', 'Left Leg/Feet', 'Right Leg/Feet'] }],
     mental: [{ type: String }],
     diseases: [{ type: String }],

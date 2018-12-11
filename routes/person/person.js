@@ -61,7 +61,8 @@ router.post('/', uploadCloud.single('picture'), (req, res, next) => {
 
 /* Show Specific and Update/Patch */
 router.get('/:personId', validateId, (req, res, next) => {
-  Person.findOne(req.params.personId)
+  const personId = req.params.personId;
+  Person.findOne({ _id: personId })
     // .populate()
     .then((person) => {
       res.json(person);
@@ -71,7 +72,7 @@ router.get('/:personId', validateId, (req, res, next) => {
     });
 });
 
-router.patch('/:personId', validateId, uploadCloud.single('picture'), (req, res, next) => {
+router.patch('/:personId', validateId, (req, res, next) => {
   const person = personBuilder(req.body, req.file);
   const personId = req.params.personId;
 
@@ -83,6 +84,24 @@ router.patch('/:personId', validateId, uploadCloud.single('picture'), (req, res,
       res.json(err);
     });
 });
+
+router.patch('/:personId/picture', validateId, uploadCloud.single('picture'), (req, res, next) => {
+  const picture = {
+    picture: {
+      picName: req.file.originalname,
+      picPath: req.file.url
+    }
+  }
+  const personId = req.params.personId;
+
+  Person.findOneAndUpdate({ _id: personId }, picture)
+    .then((response) => {
+      res.json(response);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+})
 
 /* Delete Route */
 router.delete('/:personId', validateId, (req, res, next) => {

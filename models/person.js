@@ -25,8 +25,8 @@ const personSchema = new Schema({
     maritalStatus: { type: String, enums: ['maried', 'single', 'widwed'] },
   },
   picture: {
-    picName: String,
-    picPath: String,
+    picName: { type: String, default: 'Avatar'},
+    picPath: { type: String, default: 'https://res.cloudinary.com/stormamnc/image/upload/v1544470625/volta-api/people/person_picture_alt.png'},
   },
   appearance: {
     bodyType: { type: String, enums: ['Skinny', 'Athletical', 'Fat'] },

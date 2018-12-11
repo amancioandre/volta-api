@@ -7,7 +7,7 @@ const userSchema = new Schema({
     lastName: String,
   },
   email: String,
-  username: String,
+  username: { type: String, unique: true },
   password: String,
   // organization: { type: mongoose.SchemaTypes.ObjectId, ref: 'Organization' },
   dateOfBirth: { type: Date },

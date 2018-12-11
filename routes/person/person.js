@@ -16,12 +16,9 @@ router.get('/', (req, res, next) => {
   let query = {};
   console.log(req.query.q);
   if (req.query.q && req.query.q.length > 0) {
-    const reg = new RegExp(`${req.query.q}`, 'i');
-    console.log(`${reg}`);
-    query = {
-      $or: [{ 'name.firstName': reg }, { 'name.lastName': reg }, { 'name.alias': reg }],
-    };
+    query = { };
   }
+  console.log(query);
 
   Person.find(query)
     // .populate
@@ -76,9 +73,10 @@ router.get('/:personId', validateId, (req, res, next) => {
 });
 
 router.patch('/:personId', validateId, (req, res, next) => {
-  const person = personBuilder(req.body, req.file);
+  const person = personBuilder(req.body.person, req.file);
   const personId = req.params.personId;
 
+  console.log(req.body.person)
   Person.findOneAndUpdate({ _id: personId }, person)
     .then((response) => {
       res.json(response);
@@ -99,6 +97,21 @@ router.patch('/:personId/picture', validateId, uploadCloud.single('picture'), (r
 
   Person.findOneAndUpdate({ _id: personId }, picture)
     .then((response) => {
+      res.json(response);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+})
+
+router.patch('/:personId/position', validateId, (req, res, next) => {
+
+  const { position } = req.body
+  const personId = req.params.personId;
+  console.log('POSITION ->', position);
+  Person.findOneAndUpdate({ _id: personId }, {"locations.geoReferences": position })
+    .then((response) => {
+      console.log(response)
       res.json(response);
     })
     .catch((err) => {

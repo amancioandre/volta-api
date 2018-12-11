@@ -40,6 +40,18 @@ router.post('/', (req, res, next) => {
   });
 });
 
+// Verify with user is logged
+
+router.get('/loggedin', (req, res, next) => {
+  console.log(req.session);
+  if (req.session.user) {
+    res.status(200).json(req.session.user);
+    return;
+  }
+  res.status(403).json({ message: 'Unauthorized' });
+});
+
+
 /* Show Specific and Update/Patch */
 router.get('/:userId', validateId, (req, res, next) => {
   User.findOne({ _id: req.params.userId })

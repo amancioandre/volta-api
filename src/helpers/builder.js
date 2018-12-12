@@ -27,15 +27,7 @@ module.exports = {
         ofBirth: {
           city, address, state, zip,
         },
-<<<<<<< HEAD
-        geoReferences: [{
-          lat,
-          lng,
-          timestamps: { createdAt: 'createdAt' },
-        }],
-=======
         geoReferences
->>>>>>> 5993a8c8d82266704c34cfaff3e66dccbb42c65c
       },
       background: { profession, degree, maritalStatus },
       picture: {

@@ -27,10 +27,10 @@ module.exports = {
         ofBirth: {
           city, address, state, zip,
         },
-        // geoReferences: [{
-        //   geoHash: String,
-        //   timestamps: { createdAt: 'createdAt' },
-        // }],
+        geoReferences: [{
+          geoHash: String,
+          timestamps: { createdAt: 'createdAt' },
+        }],
       },
       background: { profession, degree, maritalStatus },
       picture: {

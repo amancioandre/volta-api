@@ -4,8 +4,8 @@ module.exports = {
     const {
       firstName, lastName, alias, dateOfBirth, status, sex, city, address, state, zip,
       profession, degree, maritalStatus, bodyType, eyeColor, skinColor, hairType, height, weight,
-      tattoos, drugs, amputhee, mental, diseases, registry, driverLicense, birthCertificate, professionalLicense, lat, lng,
-      economicReg,
+      tattoos, drugs, amputhee, mental, diseases, registry, driverLicense, birthCertificate, professionalLicense,
+      economicReg, geoReferences,
     } = body;
 
     let image = {};
@@ -27,11 +27,15 @@ module.exports = {
         ofBirth: {
           city, address, state, zip,
         },
+<<<<<<< HEAD
         geoReferences: [{
           lat,
           lng,
           timestamps: { createdAt: 'createdAt' },
         }],
+=======
+        geoReferences
+>>>>>>> 5993a8c8d82266704c34cfaff3e66dccbb42c65c
       },
       background: { profession, degree, maritalStatus },
       picture: {

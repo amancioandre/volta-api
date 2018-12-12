@@ -27,7 +27,7 @@ module.exports = {
         ofBirth: {
           city, address, state, zip,
         },
-        geoReferences
+        geoReferences,
       },
       background: { profession, degree, maritalStatus },
       picture: {

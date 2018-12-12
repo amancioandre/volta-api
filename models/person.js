@@ -17,7 +17,7 @@ const personSchema = new Schema({
       state: { type: String, default: 'Unknown' },
       zip: { type: String, default: 'Unknown' },
     },
-    geoReferences: [{ lat: Number, lng: Number, createdAt: { type: Date, default: new Date() } }],
+    geoReferences: [{ lat: Number, lng: Number }],
   },
   background: {
     profession: { type: String, default: 'Unknown' },
@@ -25,7 +25,7 @@ const personSchema = new Schema({
     maritalStatus: { type: String, enums: ['Maried', 'Single', 'Widwed', 'Unknown'], default: 'Unknown' },
   },
   picture: {
-    picName: { type: String, default: 'Avatar'},
+    picName: { type: String, default: 'Avatar' },
     picPath: { type: String, default: 'https://res.cloudinary.com/stormamnc/image/upload/v1544470625/volta-api/people/person_picture_alt.png'},
   },
   appearance: {
@@ -39,7 +39,7 @@ const personSchema = new Schema({
   },
   health: {
     drugs: [{ type: Boolean, default: 'Unknown' }],
-    amputhee: [{ type: String, enums: ['No', 'Left Arm/Hands', 'Right Arm/Hands', 'Left Leg/Feet', 'Right Leg/Feet'] , default: 'No'}],
+    amputhee: [{ type: String, enums: ['No', 'Left Arm/Hands', 'Right Arm/Hands', 'Left Leg/Feet', 'Right Leg/Feet'], default: 'No' }],
     mental: [{ type: String, default: 'Unknown' }],
     diseases: [{ type: String, default: 'Unknown' }],
   },

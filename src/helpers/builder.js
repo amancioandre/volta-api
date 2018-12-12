@@ -4,7 +4,7 @@ module.exports = {
     const {
       firstName, lastName, alias, dateOfBirth, status, sex, city, address, state, zip,
       profession, degree, maritalStatus, bodyType, eyeColor, skinColor, hairType, height, weight,
-      tattoos, drugs, amputhee, mental, diseases, registry, driverLicense, birthCertificate, professionalLicense,
+      tattoos, drugs, amputhee, mental, diseases, registry, driverLicense, birthCertificate, professionalLicense, lat, lng,
       economicReg,
     } = body;
 
@@ -27,10 +27,11 @@ module.exports = {
         ofBirth: {
           city, address, state, zip,
         },
-        // geoReferences: [{
-        //   geoHash: String,
-        //   timestamps: { createdAt: 'createdAt' },
-        // }],
+        geoReferences: [{
+          lat,
+          lng,
+          timestamps: { createdAt: 'createdAt' },
+        }],
       },
       background: { profession, degree, maritalStatus },
       picture: {

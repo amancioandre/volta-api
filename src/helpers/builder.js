@@ -1,6 +1,5 @@
 module.exports = {
   personBuilder: (body, file = null) => {
-    // console.log(body, file);
     const {
       firstName, lastName, alias, dateOfBirth, status, sex, city, address, state, zip,
       profession, degree, maritalStatus, bodyType, eyeColor, skinColor, hairType, height, weight,
@@ -24,7 +23,6 @@ module.exports = {
 
     const { url, originalname } = image;
 
-    console.log(body);
     return {
       name: { firstName, lastName, alias },
       dateOfBirth,
@@ -53,7 +51,6 @@ module.exports = {
     };
   },
   userBuilder: (body) => {
-    console.log('userbuilder', body);
     const {
       firstName, lastName, username, email,
       organization, dateOfBirth, role, password,

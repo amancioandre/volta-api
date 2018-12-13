@@ -41,7 +41,6 @@ router.post('/', (req, res, next) => {
 // Verify with user is logged
 
 router.get('/loggedin', (req, res, next) => {
-  console.log('$$$$$$', req.session);
   if (req.session.user) {
     res.status(200).json(req.session.user);
     return;
@@ -51,9 +50,7 @@ router.get('/loggedin', (req, res, next) => {
 
 // Logout 
 router.get('/logout', (req, res, next) => {
-  console.log('estoyaqui!!');
   req.session.destroy(err => console.log(err));
-  console.log(req.session);
   res.status(200).json({ message: 'Log out success!' });
 });
 

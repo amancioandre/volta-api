@@ -13,7 +13,6 @@ const { personBuilder } = require('../../src/helpers/builder');
 /* RESTFUL ROUTES */
 /* Show and Create */
 router.get('/', (req, res, next) => {
-  console.log(req.query.q);
   if (req.query.q && req.query.q.length > 0) {
     const reg = new RegExp(req.query.q, 'i');
     Person.find().or([{ 'name.firstName': reg }, { 'name.lastName': reg }])
@@ -37,12 +36,9 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', uploadCloud.single('picture'), (req, res, next) => {
-  console.log('REQ BODY ->', req.body);
   let person = {};
   if (req.file) {
     person = personBuilder(req.body.person, req.file);
-
-    console.log(person);
     Person.create(person)
       .then((response) => {
         res.json(response);
@@ -53,7 +49,6 @@ router.post('/', uploadCloud.single('picture'), (req, res, next) => {
       });
   } else {
     person = personBuilder(req.body.person);
-    console.log(person);
     Person.create(person)
       .then((response) => {
         res.json(response);
@@ -82,7 +77,6 @@ router.patch('/:personId', validateId, (req, res, next) => {
   const person = personBuilder(req.body.person, req.file);
   const personId = req.params.personId;
 
-  console.log(req.body.person);
   Person.findOneAndUpdate({ _id: personId }, person)
     .then((response) => {
       res.json(response);
@@ -113,10 +107,8 @@ router.patch('/:personId/picture', validateId, uploadCloud.single('picture'), (r
 router.patch('/:personId/position', validateId, (req, res, next) => {
   const { position } = req.body;
   const personId = req.params.personId;
-  console.log('POSITION ->', position);
   Person.findOneAndUpdate({ _id: personId }, { 'locations.geoReferences': position })
     .then((response) => {
-      console.log(response);
       res.json(response);
     })
     .catch((err) => {

@@ -18,9 +18,11 @@ const app = express();
 
 /* DATABASE CONNECTION */
 const databaseName = process.env.DATABASE_NAME;
+const dbuser = process.env.DBUSER;
+const dbpassword = process.env.DBPASSWORD
 
 mongoose
-  .connect(`mongodb://localhost/${databaseName}`, { useNewUrlParser: true })
+  .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .then((output) => {
     console.log(`Connected to Mongo: Database name: ${output.connections[0].name}`);
   })

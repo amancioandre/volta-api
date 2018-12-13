@@ -37,7 +37,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', uploadCloud.single('picture'), (req, res, next) => {
-  // console.log(req.file.originalname);
+  console.log('REQ BODY ->', req.body);
   let person = {};
   if (req.file) {
     person = personBuilder(req.body.person, req.file);

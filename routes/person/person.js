@@ -13,21 +13,27 @@ const { personBuilder } = require('../../src/helpers/builder');
 /* RESTFUL ROUTES */
 /* Show and Create */
 router.get('/', (req, res, next) => {
-  let query = {};
   console.log(req.query.q);
   if (req.query.q && req.query.q.length > 0) {
-    query = { };
-  }
-  console.log(query);
-
-  Person.find(query)
+    const reg = new RegExp(req.query.q, 'i');
+    Person.find().or([{ 'name.firstName': reg }, { 'name.lastName': reg }])
     // .populate
-    .then((persons) => {
-      res.json(persons);
-    })
-    .catch((err) => {
-      res.json(err);
-    });
+      .then((persons) => {
+        res.json(persons);
+      })
+      .catch((err) => {
+        res.json(err);
+      });
+  } else {
+    Person.find()
+    // .populate
+      .then((persons) => {
+        res.json(persons);
+      })
+      .catch((err) => {
+        res.json(err);
+      });
+  }
 });
 
 router.post('/', uploadCloud.single('picture'), (req, res, next) => {
@@ -76,7 +82,7 @@ router.patch('/:personId', validateId, (req, res, next) => {
   const person = personBuilder(req.body.person, req.file);
   const personId = req.params.personId;
 
-  console.log(req.body.person)
+  console.log(req.body.person);
   Person.findOneAndUpdate({ _id: personId }, person)
     .then((response) => {
       res.json(response);
@@ -90,9 +96,9 @@ router.patch('/:personId/picture', validateId, uploadCloud.single('picture'), (r
   const picture = {
     picture: {
       picName: req.file.originalname,
-      picPath: req.file.url
-    }
-  }
+      picPath: req.file.url,
+    },
+  };
   const personId = req.params.personId;
 
   Person.findOneAndUpdate({ _id: personId }, picture)
@@ -102,22 +108,21 @@ router.patch('/:personId/picture', validateId, uploadCloud.single('picture'), (r
     .catch((err) => {
       res.json(err);
     });
-})
+});
 
 router.patch('/:personId/position', validateId, (req, res, next) => {
-
-  const { position } = req.body
+  const { position } = req.body;
   const personId = req.params.personId;
   console.log('POSITION ->', position);
-  Person.findOneAndUpdate({ _id: personId }, {"locations.geoReferences": position })
+  Person.findOneAndUpdate({ _id: personId }, { 'locations.geoReferences': position })
     .then((response) => {
-      console.log(response)
+      console.log(response);
       res.json(response);
     })
     .catch((err) => {
       res.json(err);
     });
-})
+});
 
 /* Delete Route */
 router.delete('/:personId', validateId, (req, res, next) => {

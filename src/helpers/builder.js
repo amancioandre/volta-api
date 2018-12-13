@@ -5,15 +5,22 @@ module.exports = {
       firstName, lastName, alias, dateOfBirth, status, sex, city, address, state, zip,
       profession, degree, maritalStatus, bodyType, eyeColor, skinColor, hairType, height, weight,
       tattoos, drugs, amputhee, mental, diseases, registry, driverLicense, birthCertificate, professionalLicense,
-      economicReg, geoReferences,
+      economicReg, geoReferences, picPath, picName
     } = body;
 
     let image = {};
 
-    file === null ? image = {
-      url: 'https://res.cloudinary.com/stormamnc/image/upload/v1544470625/volta-api/people/person_picture_alt.png',
-      originalname: 'Avatar',
-    } : image = file;
+    if ( file === null && picPath === null) {
+      image = {
+        url: 'https://res.cloudinary.com/stormamnc/image/upload/v1544470625/volta-api/people/person_picture_alt.png',
+        originalname: 'Avatar',
+      }
+    } else if ( file === null && picPath !== null ) {
+      image = {
+        url: picPath,
+        originalname: picName
+      }
+    } 
 
     const { url, originalname } = image;
 

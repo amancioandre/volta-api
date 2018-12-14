@@ -5,7 +5,7 @@ const router = express.Router();
 
 /* Models */
 const Person = require('../../models/person');
-
+const User = require('../../models/user');
 /* Middlewares */
 const { validateId } = require('../../src/helpers/middleware');
 const { personBuilder } = require('../../src/helpers/builder');
@@ -15,7 +15,7 @@ const { personBuilder } = require('../../src/helpers/builder');
 router.get('/', (req, res, next) => {
   if (req.query.q && req.query.q.length > 0) {
     const reg = new RegExp(req.query.q, 'i');
-    Person.find().or([{ 'name.firstName': reg }, { 'name.lastName': reg }])
+    Person.find().or([{ 'name.firstName': reg }, { 'name.lastName': reg }, { 'name.alias': reg }])
     // .populate
       .then((persons) => {
         res.json(persons);
@@ -37,6 +37,7 @@ router.get('/', (req, res, next) => {
 
 router.post('/', uploadCloud.single('picture'), (req, res, next) => {
   let person = {};
+  const { id } = req.body;
   if (req.file) {
     person = personBuilder(req.body.person, req.file);
     Person.create(person)
@@ -51,10 +52,20 @@ router.post('/', uploadCloud.single('picture'), (req, res, next) => {
     person = personBuilder(req.body.person);
     Person.create(person)
       .then((response) => {
+        const personId = { people: response._id };
+        User.findOneAndUpdate(
+          id,
+          { $addToSet: personId },
+          {
+            new: true,
+          },
+        ).then(() => {
+        }).catch((err) => {
+          res.json(err);
+        });
         res.json(response);
       })
       .catch((err) => {
-        console.log(err);
         res.json(err);
       });
   }

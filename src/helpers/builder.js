@@ -24,7 +24,6 @@ module.exports = {
 
     const { url, originalname } = image;
 
-    console.log(body);
     return {
       name: { firstName, lastName, alias },
       dateOfBirth,
@@ -53,7 +52,6 @@ module.exports = {
     };
   },
   userBuilder: (body) => {
-    console.log('userbuilder', body);
     const {
       firstName, lastName, username, email,
       organization, dateOfBirth, role, password,

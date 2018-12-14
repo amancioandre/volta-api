@@ -6,7 +6,6 @@ const User = require('../../models/user');
 
 router.post('/', (req, res, next) => {
   const { username, password } = req.body;
-  console.log(req.body);
   User.findOne({ username })
     .then((user) => {
       if (authenticate(user, password)) {

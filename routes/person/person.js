@@ -16,18 +16,16 @@ router.get('/', (req, res, next) => {
   if (req.query.q && req.query.q.length > 0) {
     const reg = new RegExp(req.query.q, 'i');
     Person.find().or([{ 'name.firstName': reg }, { 'name.lastName': reg }, { 'name.alias': reg }])
-    // .populate
-      .then((persons) => {
-        res.json(persons);
+      .then((people) => {
+        res.json(people);
       })
       .catch((err) => {
         res.json(err);
       });
   } else {
     Person.find()
-    // .populate
-      .then((persons) => {
-        res.json(persons);
+      .then((people) => {
+        res.json(people);
       })
       .catch((err) => {
         res.json(err);
@@ -36,7 +34,6 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', uploadCloud.single('picture'), (req, res, next) => {
-  // console.log(req.file.originalname);
   let person = {};
   const { id } = req.body;
   if (req.file) {
@@ -46,12 +43,10 @@ router.post('/', uploadCloud.single('picture'), (req, res, next) => {
         res.json(response);
       })
       .catch((err) => {
-        console.log(err);
         res.json(err);
       });
   } else {
     person = personBuilder(req.body.person);
-    console.log(person);
     Person.create(person)
       .then((response) => {
         const personId = { people: response._id };

@@ -50,7 +50,7 @@ app.use(session({
 
 app.use(cors({
   credentials: true,
-  origin: ['https://amancioandre.github.io/volta/'],
+  origin: ['https://amancioandre.github.io/volta-client/'],
 }));
 
 /* Static Files */
